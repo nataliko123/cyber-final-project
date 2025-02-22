@@ -4,6 +4,12 @@
   margin: auto;
 }
 
+@media only screen and (max-width: 1168px) {
+  .container {
+    padding-inline: 24px;
+  }
+}
+
 @media only screen and (max-width: 1120px) {
   .container {
     padding-inline: 16px;
@@ -271,7 +277,10 @@ header {
   grid-template-columns: 1fr 1fr;
 }
 
-.left-side-products {
+@media only screen and (max-width: 1120px) {
+  .featured-products-section {
+      display: none;
+  }
 }
 
 .first-line-products {
@@ -289,6 +298,18 @@ header {
   height: 343px;
 }
 
+@media only screen and (max-width: 1200px) {
+  .ps5-img-wrapper {
+    width: 330px;
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .ps5-img-wrapper {
+    width: 320px;
+  }
+}
+
 .ps5-img {
   position: absolute;
   left: -64px;
@@ -297,10 +318,6 @@ header {
   height: 100%;
   object-fit: cover;
   z-index: -1;
-}
-
-.ps5-details-wrapper {
-
 }
 
 .ps5-details-wrapper h2{
@@ -315,6 +332,8 @@ header {
   font-size: 14px;
   line-height: 24px;
   color: #909090;
+  max-width: 305px;
+  text-align: center;
 }
 
 .margin-top-16px {
@@ -339,6 +358,19 @@ header {
 
 .airpods-details-wrapper {
   max-width: 159px;
+  right: 70px;
+}
+
+@media only screen and (max-width: 1440px) {
+  .airpods-details-wrapper {
+    right: 45px;
+  }
+}
+
+@media only screen and (max-width: 1220px) {
+  .airpods-details-wrapper {
+    max-width: 120px;
+  }
 }
 
 .airpods-details-wrapper h2{
@@ -373,10 +405,23 @@ header {
   color: #ffffff;
 }
 
+.vision-pro-details-wrapper span{
+  font-weight: 500;
+  font-size: 29px;
+  line-height: 40px;
+  color: #ffffff;
+}
+
 .airpods-img-wrapper {
   position: relative;
   width: 208px;
   height: 272px;
+}
+
+@media only screen and (max-width: 1220px) {
+  .airpods-img-wrapper {
+    width: 160px;
+  }
 }
 
 .airpods-img {
@@ -388,11 +433,29 @@ header {
   overflow: hidden;
 }
 
+@media only screen and (max-width: 1440px) {
+  .airpods-img {
+    left: -90px;
+  }
+}
+
 .vision-img-wrapper {
   position: relative;
   width: 136px;
   height: 190px;
   margin-right: 16px;
+}
+
+@media only screen and (max-width: 1168px) {
+  .vision-img-wrapper {
+    margin-right: 8px;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .vision-img-wrapper {
+    margin-right: 4px;
+  }
 }
 
 .vision-pro-img {
@@ -419,6 +482,18 @@ header {
   padding: 56px;
 }
 
+@media only screen and (max-width: 1300px) {
+  .right-side-products-content {
+      padding: 32px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .right-side-products-content {
+    padding: 18px;
+  }
+}
+
 .right-side-products-content h2{
   font-weight: 100;
   font-size: 64px;
@@ -436,6 +511,18 @@ header {
   align-items: center;
 }
 
+@media only screen and (max-width: 1300px) {
+  .mac-img {
+      width: 250px;
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .mac-img {
+    width: 240px;
+  }
+}
+
 .black-btn-large {
   padding: 16px 56px;
   width: 191px;
@@ -447,6 +534,180 @@ header {
   border-radius: 6px;
   color: #000000;
   margin-top: 16px;
+}
+
+/*starting featured products section on mobile*/
+
+.featured-products-section-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 1120px) {
+  .featured-products-section-mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .featured-products-section-mobile {
+    display: grid;
+    grid-template-columns: 1fr;
+
+  }
+}
+
+.feature-product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-product-card p {
+  margin-bottom: 40px;
+}
+
+#bottom-margin-none {
+  margin-bottom: 0
+}
+
+.airpods-card-mobile {
+  background-color: #EDEDED;
+}
+
+.airpods-img-mobile {
+  width: 192px;
+  margin-top: 40px;
+}
+
+.vision-pro-card-mobile {
+  background-color: #353535;
+}
+
+.vision-pro-img-mobile {
+  width: 325.87px;
+  margin-top: 40px;
+}
+
+.ps5-card-mobile {
+
+}
+
+.ps5-img-mobile {
+  width: 200px;
+  margin-top: 40px;
+}
+
+.macbook-card-mobile {
+  background-color: #EDEDED;
+}
+
+.macbook-img-mobile {
+  width: 330.48px;
+  margin-top: 40px;
+}
+
+.feature-product-card-title {
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 40px;
+  margin-top: 24px;
+}
+
+.feature-product-card-title span{
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 40px;
+}
+
+.vision-pro-mobile-title {
+  color: #ffffff;
+}
+
+.black-btn-large-mobile {
+  padding: 16px 132px;
+  width: 343px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  color: #000000;
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 375px) {
+  .black-btn-large-mobile{
+    padding: 16px 110px;
+    width: 299px;
+  }
+}
+
+/*starting category section*/
+.category-section {
+  padding-top: 80px;
+  background-color: #FAFAFA;
+  padding-bottom: 80px;
+}
+
+.category-section-title {
+  display: flex;
+  justify-content:  space-between;
+  align-items: center;
+}
+
+.category-section-title h3{
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.category-section-arrows-wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.category-cards-wrapper {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+@media only screen and (max-width: 1120px) {
+  .category-cards-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+.category-card {
+  width: 160px;
+  height: 128px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: #EDEDED;
+}
+
+@media only screen and (max-width: 1120px) {
+  .category-card{
+    width: auto;
+  }
+}
+
+.category-card img{
+  width: 48px;
+}
+
+.category-card p{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 /*starting promo section*/
@@ -476,6 +737,30 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.promo-section-wrapper span{
+  font-weight: 500;
+  font-size: 72px;
+  line-height: 72px;
+}
+
+.promo-section-wrapper button{
+  margin-top: 40px;
+}
+
+.promo-section-title {
+  font-weight: 100;
+  font-size: 72px;
+  line-height: 72px;
+  color: #ffffff;
+}
+
+.promo-section-description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  color: #787878;
 }
 
 /*starting footer*/
@@ -576,5 +861,6 @@ footer {
   .social-wrapper {
     justify-content: center;
     margin-top: 32px;
+    padding-bottom: 48px;
   }
 }
