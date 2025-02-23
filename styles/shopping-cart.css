@@ -1,0 +1,154 @@
+.divider-line {
+    height: 1px;
+    background-color: #656565;
+    width: 100%;
+}
+
+.shopping-cart-section {
+    padding: 112px 0;
+    display: flex;
+    gap: 48px;
+}
+
+.section-title h2 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.products-list {
+    margin-top: 40px;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+}
+
+.product-img {
+    padding-right: 15px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.product-info h3{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 193px;
+}
+
+.product-info p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.product-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 24px;
+}
+
+.product-quantity button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    width: 24px;
+}
+
+.product-quantity input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-price {
+    padding-right: 22px;
+}
+
+.order-summary-wrapper {
+    border: 1px solid #656565;
+    border-radius: 10px;
+    padding: 56px 64px;
+}
+
+.order-summary h3{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 16px;
+    color: #111111;
+    padding-bottom: 40px;
+}
+
+.order-summary p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #545454;
+}
+
+.padding-top-24px {
+    padding-top: 24px;
+}
+
+.order-input{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    min-width: 369px;
+    margin-top: 8px;
+    border: 0.5px solid #9F9F9F;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    border-radius: 7px;
+}
+
+.order-input input {
+    border: none;
+}
+
+.order-input button {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+    padding: 8px;
+    background: transparent;
+    border-radius: 6px;
+    border: 1px solid black;
+    width: 76.45px;
+}
+
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tax {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shipping {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+}
+
+

@@ -91,6 +91,17 @@ footer {
     padding-bottom: 104px;
 }
 
+.social-wrapper img{
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.social-wrapper img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
 @media only screen and (max-width: 1120px) {
     .social-wrapper {
         justify-content: center;
