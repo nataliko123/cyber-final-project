@@ -19,7 +19,7 @@
   <body>
     <header class="container">
       <figure class="logo-wrapper">
-        <img src="./assets/Logo.svg" alt="cyber-logo" />
+        <a href="./index.html"><img src="./assets/Logo.svg" alt="cyber-logo"/></a>
       </figure>
       <div class="search-wrapper">
         <img src="./assets/Search.svg" alt="search" class="search-icon" />
@@ -35,7 +35,7 @@
       </div>
       <figure class="actions-wrapper">
         <img src="./assets/Favorites.svg" alt="favorites" />
-        <img src="./assets/Cart.svg" alt="cart" />
+        <a href="./shopping-cart.html" class="shopping-cart-btn"><img src="./assets/Cart.svg" alt="cart" /></a>
         <img src="./assets/User.svg" alt="user" />
       </figure>
       <div class="burger-menu">
@@ -417,6 +417,13 @@
         <img src="./assets/Instagram.svg" alt="instagram-logo" />
       </div>
     </footer>
+    <section class="add-to-cart-message">
+      <div class="add-to-cart-message-wrapper">
+        <img class="tick-icon" src="./assets/tick.svg" alt="tick">
+        <h2>You succesfully added product to cart</h2>
+        <button class="close-message-btn">Close</button>
+      </div>
+    </section>
     <script src="./script.js"></script>
   </body>
 </html>

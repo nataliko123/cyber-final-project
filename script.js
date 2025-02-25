@@ -26,12 +26,26 @@ document.addEventListener("DOMContentLoaded", function () {
               <img src="${product.image}" alt="product-image">
               <p>${product.name}</p>
               <h3>$${product.price}</h3>
-              <button>Add To Cart</button>
+              <button class="add-to-cart">Add To Cart</button>
             </div>
           `;
 
         // Append product card to the container
         productsContainer.appendChild(productCard);
+
+        const addToCartMessage = document.querySelector(".add-to-cart-message")
+        const addToCartButton = productCard.querySelector(".add-to-cart");
+        const body = document.querySelector("body")
+        const closeMessageButton = document.querySelector(".close-message-btn");
+        addToCartButton.addEventListener("click", function () {
+          addToCart(product);
+          addToCartMessage.style.display = "flex";
+          body.style.overflow = "hidden";
+        });
+        closeMessageButton.addEventListener("click", () => {
+          addToCartMessage.style.display = "none";
+          body.style.overflow = "visible";
+        });
       });
     })
     .catch((error) => console.error("Error loading JSON:", error));
@@ -60,23 +74,184 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error loading category data:", error));
 });
 
+// Function to add product to localStorage
+function addToCart(product) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+  // Check if product already exists in the cart
+  let existingProduct = cart.find((item) => item.id === product.id);
+  if (existingProduct) {
+    existingProduct.quantity += 1; // Increase quantity if already in cart
+  } else {
+    cart.push({ ...product, quantity: 1 }); // Add new product with quantity
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  // alert(`${product.name} added to cart!`);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cartContainer = document.querySelector(".products-list");
+  cartContainer.innerHTML = ""; // Clear existing content
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+      cartContainer.innerHTML = `
+          <div class='empty-cart-wrapper'>
+              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+              <p class='empty-card-title'>Your shopping cart is empty.</p>
+          </div>
+      `;
+      return; // Exit if the cart is empty
+  }
+
+  let totalQuantity = cart.reduce((acc, product) => acc + product.quantity, 0);
+  console.log(totalQuantity); 
+  let totalPrice = cart.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+  console.log(totalPrice);
+
+  if (totalQuantity === 0) {
+      cartContainer.innerHTML = `
+          <div class='empty-cart-wrapper'>
+              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+              <p class='empty-card-title'>Your shopping cart is empty.</p>
+          </div>
+      `;
+      return; // Exit if the total quantity is 0
+  }
+
+  cart.forEach((product, index) => {
+      const productDiv = document.createElement("div");
+      productDiv.classList.add("product");
+
+      productDiv.innerHTML = `
+          <img class="product-img" src="${product.image}" alt="product-image">
+          <div class="product-content">
+              <div class="product-info">
+                  <h3>${product.name}</h3>
+                  <p>#${product.id}</p>
+              </div>
+              <div class="product-second-line">
+                  <div class="product-quantity">
+                      <button class="decrease" data-index="${index}">−</button>
+                      <input type="text" value="${product.quantity}" disabled>
+                      <button class="increase" data-index="${index}">+</button>
+                  </div>
+                  <p class="product-price">$${(product.price * product.quantity).toFixed(2)}</p>
+                  <img class="delete-button" src="./assets/Delete-Button.svg" alt="delete-button" data-index="${index}">
+              </div>
+          </div>
+      `;
+      cartContainer.appendChild(productDiv);
+  });
+
+  // Add event listeners for quantity buttons (already correct)
+  document.querySelectorAll(".increase").forEach((button) => {
+      button.addEventListener("click", function (e) {
+          e.preventDefault();
+          updateQuantity(this.dataset.index, "increase");
+      });
+  });
+
+  document.querySelectorAll(".decrease").forEach((button) => {
+      button.addEventListener("click", function (e) {
+          e.preventDefault();
+          updateQuantity(this.dataset.index, "decrease");
+      });
+  });
+
+  document.querySelectorAll(".delete-button").forEach((button) => {
+      button.addEventListener("click", function (e) {
+          e.preventDefault();
+          removeFromCart(this.dataset.index);
+      });
+  });
+});
+
+// Function to update quantity
+// function updateQuantity(index, action) {
+//   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+//   if (action === "increase") {
+//     cart[index].quantity += 1;
+//   } else if (action === "decrease" && cart[index].quantity > 1) {
+//     cart[index].quantity -= 1;
+//     console.log(cart[index].quantity);
+//   } else if (action === "decrease" && cart[index].quantity <= 1) {
+//     cart[index].quantity = 0;
+//     localStorage.removeItem("cart");
+//   }
+
+//   localStorage.setItem("cart", JSON.stringify(cart));
+//   location.reload(); // Refresh to update cart
+// }
+
+// Function to update quantity
+function updateQuantity(index, action) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (action === "increase") {
+      cart[index].quantity += 1;
+  } else if (action === "decrease" && cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+      console.log(cart[index].quantity);
+  } else if (action === "decrease" && cart[index].quantity <= 1) {
+      cart = cart.filter((_, i) => i != index);
+      if (cart.length === 0) {
+          localStorage.removeItem("cart");
+
+          // Directly update the DOM to show the empty cart message
+          const cartContainer = document.querySelector(".products-list");
+          cartContainer.innerHTML = `
+              <div class='empty-cart-wrapper'>
+                  <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+                  <p class='empty-card-title'>Your shopping cart is empty.</p>
+              </div>
+          `;
+          return; // Exit the function after updating the DOM
+      }
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  location.reload(); // Refresh to update cart
+}
+
+// Function to remove product from cart
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index, 1); // Remove selected product
+
+  if(cart.length === 0){
+      localStorage.removeItem("cart");
+      const cartContainer = document.querySelector(".products-list");
+      cartContainer.innerHTML = `
+              <div class='empty-cart-wrapper'>
+                  <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+                  <p class='empty-card-title'>Your shopping cart is empty.</p>
+              </div>
+          `;
+          return;
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  location.reload();
+}
 // Adding data to discounts Section
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("./items/discounts.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const discountsWrapper = document.querySelector(
-          ".discounts-section .products-wrapper"
-        );
-  
-        discountsWrapper.innerHTML = "";
-  
-        data.forEach((product) => {
-          const productCard = document.createElement("div");
-          productCard.classList.add("product-card");
-  
-          productCard.innerHTML = `
+  fetch("./items/discounts.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const discountsWrapper = document.querySelector(
+        ".discounts-section .products-wrapper"
+      );
+
+      discountsWrapper.innerHTML = "";
+
+      data.forEach((product) => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+
+        productCard.innerHTML = `
             <div class="heart-wrapper">
               <img src="./assets/Heart.svg" alt="heart" />
             </div>
@@ -87,10 +262,10 @@ document.addEventListener("DOMContentLoaded", () => {
               <button>Add To Cart</button>
             </div>
           `;
-  
-          discountsWrapper.appendChild(productCard);
-        });
-      })
-      .catch((error) => console.error("Error fetching discounts.json:", error));
-  });
-  
+
+        discountsWrapper.appendChild(productCard);
+      });
+    })
+    .catch((error) => console.error("Error fetching discounts.json:", error));
+});
+
