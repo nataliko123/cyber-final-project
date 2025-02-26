@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append product card to the container
         productsContainer.appendChild(productCard);
 
-        const addToCartMessage = document.querySelector(".add-to-cart-message")
+        const addToCartMessage = document.querySelector(".add-to-cart-message");
         const addToCartButton = productCard.querySelector(".add-to-cart");
-        const body = document.querySelector("body")
+        const body = document.querySelector("body");
         const closeMessageButton = document.querySelector(".close-message-btn");
         addToCartButton.addEventListener("click", function () {
           addToCart(product);
@@ -97,35 +97,64 @@ document.addEventListener("DOMContentLoaded", function () {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (cart.length === 0) {
-      cartContainer.innerHTML = `
+    document.querySelector(
+      ".subtotal p.black-style-large"
+    ).textContent = `$0.00`;
+    document.querySelector(".tax p.black-style-large").textContent = `$0.00`;
+    document.querySelector(
+      ".shipping p.black-style-large"
+    ).textContent = `$0.00`;
+    document.querySelector(".total p.black-style-large").textContent = `$0.00`;
+    cartContainer.innerHTML = `
           <div class='empty-cart-wrapper'>
               <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
               <p class='empty-card-title'>Your shopping cart is empty.</p>
           </div>
       `;
-      return; // Exit if the cart is empty
+    return; // Exit if the cart is empty
   }
 
   let totalQuantity = cart.reduce((acc, product) => acc + product.quantity, 0);
-  console.log(totalQuantity); 
-  let totalPrice = cart.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+  console.log(totalQuantity);
+  let totalPrice = cart.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
   console.log(totalPrice);
 
+  const tax = totalQuantity * 20;
+  const shippingCost = totalQuantity * 14;
+  const totalAmount = totalPrice + tax + shippingCost;
+
+  document.querySelector(
+    ".subtotal p.black-style-large"
+  ).textContent = `$${totalPrice.toFixed(2)}`;
+  document.querySelector(
+    ".tax p.black-style-large"
+  ).textContent = `$${tax.toFixed(2)}`;
+  document.querySelector(
+    ".shipping p.black-style-large"
+  ).textContent = `$${shippingCost.toFixed(2)}`;
+  document.querySelector(
+    ".total p.black-style-large"
+  ).textContent = `$${totalAmount.toFixed(2)}`;
+
   if (totalQuantity === 0) {
-      cartContainer.innerHTML = `
+    cartContainer.innerHTML = `
           <div class='empty-cart-wrapper'>
               <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
               <p class='empty-card-title'>Your shopping cart is empty.</p>
           </div>
       `;
-      return; // Exit if the total quantity is 0
+
+    return; // Exit if the total quantity is 0
   }
 
   cart.forEach((product, index) => {
-      const productDiv = document.createElement("div");
-      productDiv.classList.add("product");
+    const productDiv = document.createElement("div");
+    productDiv.classList.add("product");
 
-      productDiv.innerHTML = `
+    productDiv.innerHTML = `
           <img class="product-img" src="${product.image}" alt="product-image">
           <div class="product-content">
               <div class="product-info">
@@ -138,79 +167,74 @@ document.addEventListener("DOMContentLoaded", function () {
                       <input type="text" value="${product.quantity}" disabled>
                       <button class="increase" data-index="${index}">+</button>
                   </div>
-                  <p class="product-price">$${(product.price * product.quantity).toFixed(2)}</p>
+                  <p class="product-price">$${(
+                    product.price * product.quantity
+                  ).toFixed(2)}</p>
                   <img class="delete-button" src="./assets/Delete-Button.svg" alt="delete-button" data-index="${index}">
               </div>
           </div>
       `;
-      cartContainer.appendChild(productDiv);
+    cartContainer.appendChild(productDiv);
   });
 
   // Add event listeners for quantity buttons (already correct)
   document.querySelectorAll(".increase").forEach((button) => {
-      button.addEventListener("click", function (e) {
-          e.preventDefault();
-          updateQuantity(this.dataset.index, "increase");
-      });
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      updateQuantity(this.dataset.index, "increase");
+    });
   });
 
   document.querySelectorAll(".decrease").forEach((button) => {
-      button.addEventListener("click", function (e) {
-          e.preventDefault();
-          updateQuantity(this.dataset.index, "decrease");
-      });
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      updateQuantity(this.dataset.index, "decrease");
+    });
   });
 
   document.querySelectorAll(".delete-button").forEach((button) => {
-      button.addEventListener("click", function (e) {
-          e.preventDefault();
-          removeFromCart(this.dataset.index);
-      });
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      removeFromCart(this.dataset.index);
+    });
   });
 });
-
-// Function to update quantity
-// function updateQuantity(index, action) {
-//   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-//   if (action === "increase") {
-//     cart[index].quantity += 1;
-//   } else if (action === "decrease" && cart[index].quantity > 1) {
-//     cart[index].quantity -= 1;
-//     console.log(cart[index].quantity);
-//   } else if (action === "decrease" && cart[index].quantity <= 1) {
-//     cart[index].quantity = 0;
-//     localStorage.removeItem("cart");
-//   }
-
-//   localStorage.setItem("cart", JSON.stringify(cart));
-//   location.reload(); // Refresh to update cart
-// }
 
 // Function to update quantity
 function updateQuantity(index, action) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (action === "increase") {
-      cart[index].quantity += 1;
+    cart[index].quantity += 1;
   } else if (action === "decrease" && cart[index].quantity > 1) {
-      cart[index].quantity -= 1;
-      console.log(cart[index].quantity);
+    cart[index].quantity -= 1;
+    console.log(cart[index].quantity);
   } else if (action === "decrease" && cart[index].quantity <= 1) {
-      cart = cart.filter((_, i) => i != index);
-      if (cart.length === 0) {
-          localStorage.removeItem("cart");
+    cart = cart.filter((_, i) => i != index);
+    if (cart.length === 0) {
+      localStorage.removeItem("cart");
 
-          // Directly update the DOM to show the empty cart message
-          const cartContainer = document.querySelector(".products-list");
-          cartContainer.innerHTML = `
+      document.querySelector(
+        ".subtotal p.black-style-large"
+      ).textContent = `$0.00`;
+      document.querySelector(".tax p.black-style-large").textContent = `$0.00`;
+      document.querySelector(
+        ".shipping p.black-style-large"
+      ).textContent = `$0.00`;
+      document.querySelector(
+        ".total p.black-style-large"
+      ).textContent = `$0.00`;
+
+      // Directly update the DOM to show the empty cart message
+      const cartContainer = document.querySelector(".products-list");
+      cartContainer.innerHTML = `
               <div class='empty-cart-wrapper'>
                   <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
                   <p class='empty-card-title'>Your shopping cart is empty.</p>
               </div>
           `;
-          return; // Exit the function after updating the DOM
-      }
+      return; // Exit the function after updating the DOM
+    }
   }
   localStorage.setItem("cart", JSON.stringify(cart));
   location.reload(); // Refresh to update cart
@@ -221,16 +245,27 @@ function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.splice(index, 1); // Remove selected product
 
-  if(cart.length === 0){
-      localStorage.removeItem("cart");
-      const cartContainer = document.querySelector(".products-list");
-      cartContainer.innerHTML = `
+  if (cart.length === 0) {
+    localStorage.removeItem("cart");
+
+    document.querySelector(
+      ".subtotal p.black-style-large"
+    ).textContent = `$0.00`;
+    document.querySelector(".tax p.black-style-large").textContent = `$0.00`;
+    document.querySelector(
+      ".shipping p.black-style-large"
+    ).textContent = `$0.00`;
+    document.querySelector(".total p.black-style-large").textContent = `$0.00`;
+
+    const cartContainer = document.querySelector(".products-list");
+
+    cartContainer.innerHTML = `
               <div class='empty-cart-wrapper'>
                   <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
                   <p class='empty-card-title'>Your shopping cart is empty.</p>
               </div>
           `;
-          return;
+    return;
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -268,4 +303,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => console.error("Error fetching discounts.json:", error));
 });
-
