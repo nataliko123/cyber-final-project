@@ -87,8 +87,14 @@ footer {
 .social-wrapper {
   display: flex;
   gap: 36.33px;
-  margin-top: 24px;
+  padding-top: 24px;
   padding-bottom: 104px;
+}
+
+@media only screen and (max-width: 1120px) {
+  .social-wrapper {
+    padding-top: 32px;
+  }
 }
 
 .social-wrapper img {

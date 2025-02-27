@@ -37,14 +37,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const addToCartButton = productCard.querySelector(".add-to-cart");
         const body = document.querySelector("body");
         const closeMessageButton = document.querySelector(".close-message-btn");
+        const addToCartMessageBackground = document.querySelector(".add-to-cart-message-background");
+
         addToCartButton.addEventListener("click", function () {
           addToCart(product);
-          addToCartMessage.style.display = "flex";
+          addToCartMessage.classList.toggle("active-message");
           body.style.overflow = "hidden";
+          addToCartMessageBackground.style.left = "0";
         });
+
         closeMessageButton.addEventListener("click", () => {
-          addToCartMessage.style.display = "none";
           body.style.overflow = "visible";
+          addToCartMessageBackground.style.left = "-100vw";
+          addToCartMessage.classList.remove("active-message");
+        });
+        
+        addToCartMessageBackground.addEventListener("click", function () {
+          addToCartMessageBackground.style.left = "-100vw";
+          body.style.overflow = "visible";
+          addToCartMessage.classList.remove("active-message");
         });
       });
     })
@@ -284,6 +295,12 @@ function updateCartDisplay() {
           </div>
       `;
       cartContainer.appendChild(productDiv);
+
+      if (index < cart.length - 1) { // Add divider if not the last item
+        const divider = document.createElement("div");
+        divider.classList.add("product-divider");
+        cartContainer.appendChild(divider); // Append the divider
+    }
   });
 
   document.querySelectorAll(".increase").forEach((button) => {
@@ -323,60 +340,62 @@ function removeFromCart(index) {
   cart.splice(index, 1); // Remove selected product
 
   if (cart.length === 0) {
-    localStorage.removeItem("cart");
+      localStorage.removeItem("cart");
 
-    document.querySelector(
-      ".subtotal p.black-style-large"
-    ).textContent = `$0.00`;
-    document.querySelector(".tax p.black-style-large").textContent = `$0.00`;
-    document.querySelector(
-      ".shipping p.black-style-large"
-    ).textContent = `$0.00`;
-    document.querySelector(".total p.black-style-large").textContent = `$0.00`;
+      updateOrderSummary(0, 0, 0, 0);
 
-    const cartContainer = document.querySelector(".products-list");
-
-    cartContainer.innerHTML = `
-              <div class='empty-cart-wrapper'>
-                  <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
-                  <p class='empty-card-title'>Your shopping cart is empty.</p>
-              </div>
-          `;
-    return;
+      const cartContainer = document.querySelector(".products-list");
+      cartContainer.innerHTML = `
+          <div class='empty-cart-wrapper'>
+              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+              <p class='empty-card-title'>Your shopping cart is empty.</p>
+          </div>
+      `;
+      return;
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  location.reload();
+  updateCartDisplay(); // Update the cart display
 }
 // Adding data to discounts Section
 document.addEventListener("DOMContentLoaded", () => {
   fetch("./items/discounts.json")
-    .then((response) => response.json())
-    .then((data) => {
-      const discountsWrapper = document.querySelector(
-        ".discounts-section .products-wrapper"
-      );
+      .then((response) => response.json())
+      .then((data) => {
+          const discountsWrapper = document.querySelector(".discounts-section .products-wrapper");
+          discountsWrapper.innerHTML = "";
 
-      discountsWrapper.innerHTML = "";
+          data.forEach((product) => {
+              const productCard = document.createElement("div");
+              productCard.classList.add("product-card");
 
-      data.forEach((product) => {
-        const productCard = document.createElement("div");
-        productCard.classList.add("product-card");
+              productCard.innerHTML = `
+                  <div class="heart-wrapper">
+                      <img src="./assets/Heart.svg" alt="heart" />
+                  </div>
+                  <div class="product-card-content">
+                      <img src="${product.image}" alt="${product.name}" />
+                      <p>${product.name}</p>
+                      <h3>$${product.price}</h3>
+                      <button class="add-to-cart-discount">Add To Cart</button>
+                  </div>
+              `;
 
-        productCard.innerHTML = `
-            <div class="heart-wrapper">
-              <img src="./assets/Heart.svg" alt="heart" />
-            </div>
-            <div class="product-card-content">
-              <img src="${product.image}" alt="${product.name}" />
-              <p>${product.name}</p>
-              <h3>$${product.price}</h3>
-              <button>Add To Cart</button>
-            </div>
-          `;
+              discountsWrapper.appendChild(productCard);
 
-        discountsWrapper.appendChild(productCard);
-      });
-    })
-    .catch((error) => console.error("Error fetching discounts.json:", error));
+              const addToCartMessage = document.querySelector(".add-to-cart-message");
+              const addToCartButton = productCard.querySelector(".add-to-cart-discount");
+              const body = document.querySelector("body");
+              const addToCartMessageBackground = document.querySelector(".add-to-cart-message-background");
+
+              addToCartButton.addEventListener("click", function () {
+                addToCart(product);
+                body.style.overflow = "hidden";
+                addToCartMessageBackground.style.left = "0";
+                addToCartMessage.classList.toggle("active-message");
+              });
+          });
+      })
+      .catch((error) => console.error("Error fetching discounts.json:", error));
 });
+

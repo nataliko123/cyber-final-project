@@ -804,6 +804,12 @@
   line-height: 72px;
 }
 
+@media only screen and (max-width: 768px) {
+  .promo-section-wrapper span {
+    font-size: 48px;
+  }
+}
+
 .promo-section-wrapper button {
   margin-top: 40px;
 }
@@ -815,6 +821,14 @@
   color: #ffffff;
 }
 
+@media only screen and (max-width: 768px) {
+  .promo-section-title  {
+    font-size: 48px;
+    max-width: 280px;
+    text-align: center;
+  }
+}
+
 .promo-section-description {
   font-weight: 400;
   font-size: 16px;
@@ -822,18 +836,45 @@
   color: #787878;
 }
 
+@media only screen and (max-width: 768px) {
+  .promo-section-description  {
+    max-width: 343px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .promo-section-description  {
+    max-width: 300px;
+  }
+}
+
+.add-to-cart-message-background {
+  position: fixed;
+  top: 0;
+  left: -100vw;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background-color: #80808080;
+  transition: 0.3s ease-in-out;
+}
 
 .add-to-cart-message {
-  display: none;
   padding: 20px;
-  background-color: #00a0f3;
+  background-color: #ffffff;
   color: #000000;
   position: fixed;
-  top: 50px;
+  top: -193px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
   border-radius: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.active-message {
+  top: 50px;
 }
 
 .add-to-cart-message-wrapper {
@@ -843,11 +884,29 @@
   gap: 16px;
 }
 
+.add-to-cart-message-wrapper h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .add-to-cart-message-wrapper h2 {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 300;
+    text-align: center;
+  }
+}
+
 .tick-icon {
   width: 55px;
 }
 
 .close-message-btn {
+  color: #ffffff;
+  background-color: #000000;
   padding: 8px 14px;
   border: 0.5px solid #ffffff;
   border-radius: 8px;
