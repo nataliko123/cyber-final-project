@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 productCard.innerHTML = `
             <div class="heart-wrapper" data-product-id="${product.id}">
-                ${isFavorite ? '<img src="./assets/Like.svg" alt="favorite" class="heart-icon">' : '<img src="./assets/Heart.svg" alt="heart" class="heart-icon">'}
+                ${isFavorite ? '<img src="../assets/Like.svg" alt="favorite" class="heart-icon">' : '<img src="../assets/Heart.svg" alt="heart" class="heart-icon">'}
             </div>
             <div class="product-card-content">
               <img src="${product.image}" alt="product-image">
@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 
-
 // Adding data to categories Section
 document.addEventListener("DOMContentLoaded", function () {
     fetch("./items/category.json")
@@ -124,118 +123,102 @@ function addToCart(product) {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    // alert(`${product.name} added to cart!`);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const cartContainer = document.querySelector(".products-list");
-    cartContainer.innerHTML = ""; // Clear existing content
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    if (cart.length === 0) {
-        document.querySelector(
-            ".subtotal p.black-style-large"
-        ).textContent = `$0.00`;
-        document.querySelector(".tax p.black-style-large").textContent = `$0.00`;
-        document.querySelector(
-            ".shipping p.black-style-large"
-        ).textContent = `$0.00`;
-        document.querySelector(".total p.black-style-large").textContent = `$0.00`;
-        cartContainer.innerHTML = `
-          <div class='empty-cart-wrapper'>
-              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
-              <p class='empty-card-title'>Your shopping cart is empty.</p>
-          </div>
-      `;
-        return; // Exit if the cart is empty
-    }
-
-    let totalQuantity = cart.reduce((acc, product) => acc + product.quantity, 0);
-    console.log(totalQuantity);
-    let totalPrice = cart.reduce(
-        (acc, product) => acc + product.price * product.quantity,
-        0
-    );
-    console.log(totalPrice);
-
-    const tax = totalQuantity * 20;
-    const shippingCost = totalQuantity * 14;
-    const totalAmount = totalPrice + tax + shippingCost;
-
-    document.querySelector(
-        ".subtotal p.black-style-large"
-    ).textContent = `$${totalPrice.toFixed(2)}`;
-    document.querySelector(
-        ".tax p.black-style-large"
-    ).textContent = `$${tax.toFixed(2)}`;
-    document.querySelector(
-        ".shipping p.black-style-large"
-    ).textContent = `$${shippingCost.toFixed(2)}`;
-    document.querySelector(
-        ".total p.black-style-large"
-    ).textContent = `$${totalAmount.toFixed(2)}`;
-
-    if (totalQuantity === 0) {
-        cartContainer.innerHTML = `
-          <div class='empty-cart-wrapper'>
-              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
-              <p class='empty-card-title'>Your shopping cart is empty.</p>
-          </div>
-      `;
-
-        return; // Exit if the total quantity is 0
-    }
-
-    cart.forEach((product, index) => {
-        const productDiv = document.createElement("div");
-        productDiv.classList.add("product");
-
-        productDiv.innerHTML = `
-          <img class="product-img" src="${product.image}" alt="product-image">
-          <div class="product-content">
-              <div class="product-info">
-                  <h3>${product.name}</h3>
-                  <p>#${product.id}</p>
-              </div>
-              <div class="product-second-line">
-                  <div class="product-quantity">
-                      <button class="decrease" data-index="${index}">−</button>
-                      <input type="text" value="${product.quantity}" disabled>
-                      <button class="increase" data-index="${index}">+</button>
-                  </div>
-                  <p class="product-price">$${(
-            product.price * product.quantity
-        ).toFixed(2)}</p>
-                  <img class="delete-button" src="./assets/Delete-Button.svg" alt="delete-button" data-index="${index}">
-              </div>
-          </div>
-      `;
-        cartContainer.appendChild(productDiv);
-    });
-
-    // Add event listeners for quantity buttons (already correct)
-    document.querySelectorAll(".increase").forEach((button) => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault();
-            updateQuantity(this.dataset.index, "increase");
-        });
-    });
-
-    document.querySelectorAll(".decrease").forEach((button) => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault();
-            updateQuantity(this.dataset.index, "decrease");
-        });
-    });
-
-    document.querySelectorAll(".delete-button").forEach((button) => {
-        button.addEventListener("click", function (e) {
-            e.preventDefault();
-            removeFromCart(this.dataset.index);
-        });
-    });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     const cartContainer = document.querySelector(".products-list");
+//     cartContainer.innerHTML = ""; // Clear existing content
+//
+//     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+//
+//     if (cart.length === 0) {
+//         document.querySelector(".subtotal p.black-style-large").textContent = `$0.00`;
+//         document.querySelector(".tax p.black-style-large").textContent = `$0.00`;
+//         document.querySelector(".shipping p.black-style-large").textContent = `$0.00`;
+//         document.querySelector(".total p.black-style-large").textContent = `$0.00`;
+//         cartContainer.innerHTML = `
+//                      <div class='empty-cart-wrapper'>
+//                          <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+//                          <p class='empty-card-title'>Your shopping cart is empty.</p>
+//                      </div>
+//                  `;
+//         console.log("aq shemovida")
+//         return; // Exit if the cart is empty
+//     }
+//
+//     let totalQuantity = cart.reduce((acc, product) => acc + product.quantity, 0);
+//     let totalPrice = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
+//
+//     const tax = totalQuantity * 20;
+//     const shippingCost = totalQuantity * 14;
+//     const totalAmount = totalPrice + tax + shippingCost;
+//
+//     document.querySelector(".subtotal p.black-style-large").textContent = `$${totalPrice.toFixed(2)}`;
+//     document.querySelector(".tax p.black-style-large").textContent = `$${tax.toFixed(2)}`;
+//     document.querySelector(".shipping p.black-style-large").textContent = `$${shippingCost.toFixed(2)}`;
+//     document.querySelector(".total p.black-style-large").textContent = `$${totalAmount.toFixed(2)}`;
+//
+//     if (totalQuantity === 0) {
+//         cartContainer.innerHTML = `
+//           <div class='empty-cart-wrapper'>
+//               <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+//               <p class='empty-card-title'>Your shopping cart is empty.</p>
+//           </div>
+//       `;
+//
+//         return; // Exit if the total quantity is 0
+//     }
+//
+//     cart.forEach((product, index) => {
+//         const productDiv = document.createElement("div");
+//         productDiv.classList.add("product");
+//
+//         productDiv.innerHTML = `
+//           <img class="product-img" src="${product.image}" alt="product-image">
+//           <div class="product-content">
+//               <div class="product-info">
+//                   <h3>${product.name}</h3>
+//                   <p>#${product.id}</p>
+//               </div>
+//               <div class="product-second-line">
+//                   <div class="product-quantity">
+//                       <button class="decrease" data-index="${index}">−</button>
+//                       <input type="text" value="${product.quantity}" disabled>
+//                       <button class="increase" data-index="${index}">+</button>
+//                   </div>
+//                   <p class="product-price">$${(product.price * product.quantity).toFixed(2)}</p>
+//                   <img class="delete-button" src="./assets/Delete-Button.svg" alt="delete-button" data-index="${index}">
+//               </div>
+//           </div>
+//       `;
+//         cartContainer.appendChild(productDiv);
+//         console.log("aq shemovida")
+//     });
+//
+//     Add event listeners for quantity buttons (already correct)
+//     document.querySelectorAll(".increase").forEach((button) => {
+//         button.addEventListener("click", function (e) {
+//             e.preventDefault();
+//             updateQuantity(this.dataset.index, "increase");
+//             console.log("moamata")
+//         });
+//     });
+//
+//     document.querySelectorAll(".decrease").forEach((button) => {
+//         button.addEventListener("click", function (e) {
+//             e.preventDefault();
+//             updateQuantity(this.dataset.index, "decrease");
+//             console.log("daaklo")
+//         });
+//     });
+//
+//     document.querySelectorAll(".delete-button").forEach((button) => {
+//         button.addEventListener("click", function (e) {
+//             e.preventDefault();
+//             removeFromCart(this.dataset.index);
+//         });
+//     });
+// });
 
 // Function to update quantity
 function updateQuantity(index, action) {
@@ -253,20 +236,21 @@ function updateQuantity(index, action) {
         if (quantityField) {
             quantityField.value = cart[index].quantity;
         }
-    } else if (action === "decrease" && cart[index].quantity <= 1) {
+    }
+    else if (action === "decrease" && cart[index].quantity <= 1) {
         cart = cart.filter((_, i) => i != index);
-        if (cart.length === 0) {
-            localStorage.removeItem("cart");
-            updateOrderSummary(0, 0, 0, 0);
-            const cartContainer = document.querySelector(".products-list");
-            cartContainer.innerHTML = `
-              <div class='empty-cart-wrapper'>
-                  <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
-                  <p class='empty-card-title'>Your shopping cart is empty.</p>
-              </div>
-          `;
-            return;
-        }
+        // if (cart.length === 0) {
+        //     localStorage.removeItem("cart");
+        //     updateOrderSummary(0, 0, 0, 0);
+        //     const cartContainer = document.querySelector(".products-list");
+        //     cartContainer.innerHTML = `
+        //       <div class='empty-cart-wrapper'>
+        //           <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+        //           <p class='empty-card-title'>Your shopping cart is empty.</p>
+        //       </div>
+        //   `;
+        //     return;
+        // }
     }
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartDisplay(); // Update display and prices
@@ -278,11 +262,13 @@ function updateCartDisplay() {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+    // While user adds products to cart this code execute function,
+    // that displays that shopping cart is empty
     if (cart.length === 0) {
         updateOrderSummary(0, 0, 0, 0);
         cartContainer.innerHTML = `
           <div class='empty-cart-wrapper'>
-              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+              <img class='empty-logo' src='../assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
               <p class='empty-card-title'>Your shopping cart is empty.</p>
           </div>
       `;
@@ -316,7 +302,7 @@ function updateCartDisplay() {
                       <button class="increase" data-index="${index}">+</button>
                   </div>
                   <p class="product-price">$${(product.price * product.quantity).toFixed(2)}</p>
-                  <img class="delete-button" src="./assets/Delete-Button.svg" alt="delete-button" data-index="${index}">
+                  <img class="delete-button" src="../assets/Delete-Button.svg" alt="delete-button" data-index="${index}">
               </div>
           </div>
       `;
@@ -373,7 +359,7 @@ function removeFromCart(index) {
         const cartContainer = document.querySelector(".products-list");
         cartContainer.innerHTML = `
           <div class='empty-cart-wrapper'>
-              <img class='empty-logo' src='./assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
+              <img class='empty-logo' src='../assets/empty-shopping-cart.webp' alt='empty-cart-logo'/>
               <p class='empty-card-title'>Your shopping cart is empty.</p>
           </div>
       `;
@@ -401,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 productCard.innerHTML = `
           <div class="heart-wrapper" data-product-id="${product.id}">
-            ${isFavorite ? '<img src="./assets/Like.svg" alt="favorite" class="heart-icon">' : '<img src="./assets/Heart.svg" alt="heart" class="heart-icon">'}
+            ${isFavorite ? '<img src="../assets/Like.svg" alt="favorite" class="heart-icon">' : '<img src="../assets/Heart.svg" alt="heart" class="heart-icon">'}
           </div>
           <div class="product-card-content">
             <img src="${product.image}" alt="${product.name}" />
