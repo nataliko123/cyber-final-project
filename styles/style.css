@@ -850,9 +850,10 @@
 }
 
 .add-to-cart-message-background {
+  display: none;
   position: fixed;
   top: 0;
-  left: -100vw;
+  left: 0;
   height: 100vh;
   width: 100vw;
   z-index: 1;
