@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 setupHeartToggle(productCard, product);
-
             });
         });
 });
@@ -121,7 +120,6 @@ function addToCart(product) {
 
     // Check if product already exists in the cart
     let existingProduct = cart.find((item) => item.id === product.id);
-    console.log(existingProduct)
     if (existingProduct) {
         existingProduct.quantity += 1; // Increase quantity if already in cart
     } else {
@@ -312,7 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 setupHeartToggle(productCard, product);
-
             });
         });
 });
