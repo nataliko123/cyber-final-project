@@ -139,9 +139,10 @@ function updateQuantity(index, action) {
         if (quantityField) {
             quantityField.value = cart[index].quantity;
         }
-    }
-    else if (action === "decrease" && cart[index].quantity <= 1) {
-        cart = cart.filter((_, i) => i != index);
+    } else if (action === "decrease" && cart[index].quantity <= 1) {
+        cart = cart.filter((item, i) => {
+            return i !== +index
+        });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartDisplay(); // Update display and prices
