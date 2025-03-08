@@ -1,10 +1,4 @@
 // Function to toggle favorite status and update localStorage
-function toggleFavorite(productId, isFavorite) {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || {};
-    favorites[productId] = isFavorite;
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-}
-
 function setupHeartToggle(productCard, product) {
     const heartWrapper = productCard.querySelector(".heart-wrapper");
     heartWrapper.addEventListener("click", () => {
@@ -91,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 
-// Adding data to categories Section
+// Adding data to category Section
 document.addEventListener("DOMContentLoaded", function () {
     fetch("./items/category.json")
         .then((response) => response.json())
