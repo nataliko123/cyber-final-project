@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/contact.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,24 +20,24 @@
   <body>
     <header class="container">
       <figure class="logo-wrapper">
-        <a href="./index.html"><img src="./assets/Logo.svg" alt="cyber-logo"/></a>
+        <a href="./index.html"><img src="./assets/Logo.svg" alt="Cyber logo"/></a>
       </figure>
       <div class="search-wrapper">
-        <img src="./assets/Search.svg" alt="search" class="search-icon" />
-        <input type="text" placeholder="Search" />
+        <img src="./assets/Search.svg" alt="Search icon" class="search-icon" />
+        <input type="text" placeholder="Search" aria-label="Search products" />
       </div>
       <div class="nav-bar-wrapper">
         <ul class="nav-bar">
-          <li>Home</li>
-          <li class="non-active-nav-bar">About</li>
-          <li class="non-active-nav-bar">Contact Us</li>
-          <li class="non-active-nav-bar">Blog</li>
+          <li><a href="./index.html">Home</a></li>
+          <li class="non-active-nav-bar"><a href="./about.html">About</a></li>
+          <li class="non-active-nav-bar"><a href="./contact.html">Contact Us</a></li>
+          <li class="non-active-nav-bar"><a href="./blog.html">Blog</a></li>
         </ul>
       </div>
       <figure class="actions-wrapper">
-        <img src="./assets/Favorites.svg" alt="favorites" />
-        <a href="./shopping-cart.html" class="shopping-cart-btn"><img src="./assets/Cart.svg" alt="cart" /></a>
-        <img src="./assets/User.svg" alt="user" />
+        <img src="./assets/Favorites.svg" alt="Favorites icon" />
+        <a href="./shopping-cart.html" class="shopping-cart-btn"><img src="./assets/Cart.svg" alt="Cart icon" /></a>
+        <img src="./assets/User.svg" alt="User icon" />
       </figure>
       <div class="burger-menu">
         <span></span>
@@ -57,7 +58,7 @@
           </div>
         </div>
         <figure class="hero-img-wrapper">
-          <img src="assets/Hero-Img.png" alt="mobile-phone" class="hero-img" />
+          <img src="assets/Hero-Img.png" alt="IPhone 14 Pro" class="hero-img" />
         </figure>
       </div>
     </section>
@@ -65,7 +66,7 @@
       <div class="left-side-products">
         <div class="first-line-products">
           <figure class="ps5-img-wrapper">
-            <img class="ps5-img" src="./assets/Ps5.png" alt="ps-5" />
+            <img class="ps5-img" src="./assets/Ps5.png" alt="PlayStation 5" />
           </figure>
           <div class="ps5-details-wrapper">
             <h2 class="ps5-title">Playstation 5</h2>
@@ -81,7 +82,7 @@
               <img
                 class="airpods-img"
                 src="./assets/Apple-Airpods.png"
-                alt="airpods"
+                alt="Apple AirPods Max"
               />
             </figure>
             <div class="airpods-details-wrapper">
@@ -96,7 +97,7 @@
               <img
                 class="vision-pro-img"
                 src="./assets/Vision-Pro.png"
-                alt="visions-pro"
+                alt="Apple Vision Pro"
               />
             </figure>
             <div class="vision-pro-details-wrapper">
@@ -121,7 +122,7 @@
           <img
             class="mac-img"
             src="./assets/MacBook-Pro.png"
-            alt="macbook-air"
+            alt="MacBook Air"
           />
         </figure>
       </div>
@@ -131,7 +132,7 @@
         <img
           class="airpods-img-mobile"
           src="./assets/Airpods-img-mobile.png"
-          alt="Airpods"
+          alt="Apple AirPods Max"
         />
         <h3 class="feature-product-card-title airpods-card-mobile-title">
           Apple AirPods <span>Max</span>
@@ -144,7 +145,7 @@
         <img
           class="vision-pro-img-mobile"
           src="./assets/Vision-img-mobile.png"
-          alt="Vision-Pro"
+          alt="Apple Vision Pro"
         />
         <h3 class="feature-product-card-title vision-pro-mobile-title">
           Apple Vision <span>Pro</span>
@@ -157,7 +158,7 @@
         <img
           class="ps5-img-mobile"
           src="./assets/Ps5-img-mobile.png"
-          alt="Ps5"
+          alt="PlayStation 5"
         />
         <h3 class="feature-product-card-title ps5-mobile-title">
           Playstation <span>5</span>
@@ -171,7 +172,7 @@
         <img
           class="macbook-img-mobile"
           src="assets/Macbook-img-mobile.png"
-          alt="Macbook-Pro"
+          alt="MacBook Air"
         />
         <h3 class="feature-product-card-title macbook-mobile-title">
           <span>Macbook</span> Air
@@ -191,33 +192,33 @@
         <div class="category-section-title">
           <h3>Browse By Category</h3>
           <figure class="category-section-arrows-wrapper">
-            <img src="./assets/Left-Arrow.svg" alt="left-arrow" />
-            <img src="./assets/Right-Arrow.svg" alt="right-arrow" />
+            <img src="./assets/Left-Arrow.svg" alt="Previous category" />
+            <img src="./assets/Right-Arrow.svg" alt="Next category" />
           </figure>
         </div>
         <div class="category-cards-wrapper">
           <div class="category-card">
-            <img src="./assets/Phones.svg" alt="Phones" />
+            <img src="./assets/Phones.svg" alt="Phones category" />
             <p>Phones</p>
           </div>
           <div class="category-card">
-            <img src="./assets/Phones.svg" alt="Phones" />
+            <img src="./assets/Phones.svg" alt="Phones category" />
             <p>Phones</p>
           </div>
           <div class="category-card">
-            <img src="./assets/Phones.svg" alt="Phones" />
+            <img src="./assets/Phones.svg" alt="Phones category" />
             <p>Phones</p>
           </div>
           <div class="category-card">
-            <img src="./assets/Phones.svg" alt="Phones" />
+            <img src="./assets/Phones.svg" alt="Phones category" />
             <p>Phones</p>
           </div>
           <div class="category-card">
-            <img src="./assets/Phones.svg" alt="Phones" />
+            <img src="./assets/Phones.svg" alt="Phones category" />
             <p>Phones</p>
           </div>
           <div class="category-card">
-            <img src="./assets/Phones.svg" alt="Phones" />
+            <img src="./assets/Phones.svg" alt="Phones category" />
             <p>Phones</p>
           </div>
         </div>
@@ -232,10 +233,10 @@
       <div class="products-wrapper">
         <div class="product-card">
           <div class="heart-wrapper">
-            <img class="test" src="./assets/Heart.svg" alt="heart" />
+            <img class="test" src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 <span>Pro Max 128GB Deep Purple</span></p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -243,10 +244,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -254,10 +255,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -265,10 +266,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -276,10 +277,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -287,10 +288,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -298,10 +299,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -309,10 +310,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -327,10 +328,10 @@
       <div class="products-wrapper">
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 <span>Pro Max 128GB Deep Purple</span></p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -338,10 +339,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -349,10 +350,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -360,10 +361,10 @@
         </div>
         <div class="product-card">
           <div class="heart-wrapper">
-            <img src="./assets/Heart.svg" alt="heart" />
+            <img src="./assets/Heart.svg" alt="Favorite icon" />
           </div>
           <div class="product-card-content">
-            <img src="./assets/Iphone-14.png" alt="product-image" />
+            <img src="./assets/Iphone-14.png" alt="iPhone 14 Pro Max" />
             <p>Apple iPhone 14 Pro Max 128GB Deep Purple</p>
             <h3>$900</h3>
             <button>Add To Cart</button>
@@ -380,10 +381,25 @@
         <button class="white-btn-large">Shop Now</button>
       </div>
     </section>
+    <section class="contact-section container">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required aria-label="Name">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required aria-label="Email">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required aria-label="Password">
+            <button type="button" id="toggle-password">Show Password</button>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <p id="form-error" class="error-message"></p>
+    </section>
+    <div class="divider-line"></div>
     <footer>
       <div class="footer-wrapper container">
         <div class="description-wrapper">
-          <img src="assets/White-Logo.svg" alt="logo" />
+          <img src="assets/White-Logo.svg" alt="Cyber logo" />
           <p>
             We are a residential interior design firm located in Portland. Our
             boutique-studio offers more than
@@ -411,16 +427,16 @@
         </div>
       </div>
       <div class="social-wrapper container">
-        <img src="./assets/Twitter.svg" alt="twitter-logo" />
-        <img src="./assets/Facebook.svg" alt="facebook-logo" />
-        <img src="./assets/Tiktok.svg" alt="tiktok-logo" />
-        <img src="./assets/Instagram.svg" alt="instagram-logo" />
+        <img src="./assets/Twitter.svg" alt="Twitter logo" />
+        <img src="./assets/Facebook.svg" alt="Facebook logo" />
+        <img src="./assets/Tiktok.svg" alt="TikTok logo" />
+        <img src="./assets/Instagram.svg" alt="Instagram logo" />
       </div>
     </footer>
     <div class="add-to-cart-message-background"></div>
     <section class="add-to-cart-message">
       <div class="add-to-cart-message-wrapper">
-        <img class="tick-icon" src="./assets/tick.svg" alt="tick">
+        <img class="tick-icon" src="./assets/tick.svg" alt="Success tick">
         <h2>Successfully added product to cart</h2>
         <button class="close-message-btn">Close</button>
       </div>

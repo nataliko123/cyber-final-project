@@ -822,7 +822,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .promo-section-title  {
+  .promo-section-title {
     font-size: 48px;
     max-width: 280px;
     text-align: center;
@@ -837,14 +837,14 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .promo-section-description  {
+  .promo-section-description {
     max-width: 343px;
     text-align: center;
   }
 }
 
 @media only screen and (max-width: 375px) {
-  .promo-section-description  {
+  .promo-section-description {
     max-width: 300px;
   }
 }
